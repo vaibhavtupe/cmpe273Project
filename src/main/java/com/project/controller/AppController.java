@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.project.configuration.AppConfiguration;
+import com.project.dto.CourseInfoBySkill;
 import com.project.dto.Element;
 import com.project.implementation.CourseraOperations;
 
@@ -33,13 +36,12 @@ public class AppController extends WebMvcConfigurerAdapter {
 	CourseraOperations cop;
 	
 	@RequestMapping(value="/getcoursesbyslinkedinskill/{skill}", method=RequestMethod.GET)
-	public ResponseEntity<Element> getCourseByLinkedIn(@PathVariable String skill){
+	public ResponseEntity<List<CourseInfoBySkill>> getCourseByLinkedIn(@PathVariable String skill){
 		
 		//String skill="java";
-		Element element=cop.getCoursesBySkills(skill);
+		List<CourseInfoBySkill> courses=cop.getCoursesBySkills(skill);
 	
-	
-		return new ResponseEntity<Element>(element, HttpStatus.OK);
+		return new ResponseEntity<List<CourseInfoBySkill>>(courses, HttpStatus.OK);
 		
 	}
 
