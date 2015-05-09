@@ -1,21 +1,23 @@
 package demo;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
-import resources.Categories;
-import resources.Course;
-import resources.Element;
-import resources.Linked;
+import com.project.controller.AppController;
 
+@Configuration
+@ComponentScan
+@EnableAutoConfiguration
 @SpringBootApplication
 public class ConsumeCourseraApplication {
 
     public static void main(String[] args) {
         
-    	//SpringApplication.run(ConsumeCourseraApplication.class, args);
-    	CourseraOperations.getCourseraData("java");
+    	SpringApplication.run(AppController.class, args);
+    	
     	
     	
     }
